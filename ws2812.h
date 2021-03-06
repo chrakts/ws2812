@@ -37,14 +37,15 @@
     #define     WS_F_OUT        800000                  // Output frequency Original: 800000
 #endif
 #ifndef WS_CNT_TOTAL
-    #define     WS_CNT_TOTAL    44 // 22 ((F_CPU/WS_F_OUT)/2-1)    // # cycles for one bit
+    #define     WS_CNT_TOTAL    45 // 22 ((F_CPU/WS_F_OUT)/2-1)    // # cycles for one bit
 #endif
 #ifndef WS_CNT_LOW
-    #define     WS_CNT_LOW      12 // 6 war 7 (((F_CPU/WS_F_OUT)/2)/3-1)  // # cycles for T0H
+    #define     WS_CNT_LOW      15 // 6 war 7 (((F_CPU/WS_F_OUT)/2)/3-1)  // # cycles for T0H
    // #define     WS_CNT_LOW      (((F_CPU/WS_F_OUT)*1)/3-1)  // # cycles for T0H original
 #endif
 #ifndef WS_CNT_HIGH
-    #define     WS_CNT_HIGH     32 // 16 (((F_CPU/WS_F_OUT)*1)/3-1) // # cycles for T1H
+    #define     WS_CNT_HIGH     30
+    // 16 (((F_CPU/WS_F_OUT)*1)/3-1) // # cycles for T1H
 #endif
 
 
