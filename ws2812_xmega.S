@@ -64,6 +64,8 @@ Debugging-Zeile (PORTC_OUTSET / PORTC_OUTCLR) entfernt, da Wirkung auf benutzte 
 #define     WS_ENDBYTE  0xff	                              ; war ff *********************************************************
 #define     WS_MERGE(A, B, C) WS_MERGE_(A, B, C)
 #define     WS_MERGE_(A, B, C) A ## B ## C
+#define     WS_4MERGE(A, B, C, D) WS_4MERGE_(A, B, C, D)
+#define     WS_4MERGE_(A, B, C, D) A ## B ## C ## D
 
 ; EVSYS mux to use (CH0)
 #define     WS_EVSYS_MUX    WS_MERGE(EVSYS_CH, WS_EVSYS_CH, MUX)
@@ -115,9 +117,10 @@ WS_init:
     #pragma message "Port wurde geremapped"
 #endif
 
-
-#	ldi		r24, PORT_INVEN_bm						; !!! Invertierung des Pins wegen Transistor
-#	sts     WS_MERGE(WS_OUTPORT, _PIN4CTRL,), r24
+#ifdef WS_PIN_INVERT
+	ldi		r24, PORT_INVEN_bm						; !!! Invertierung des Pins wegen Transistor
+	sts     WS_4MERGE(WS_OUTPORT, _PIN,WS_OUTPIN,CTRL), r24
+#endif
 
     # Initialize DMA stuff
 
